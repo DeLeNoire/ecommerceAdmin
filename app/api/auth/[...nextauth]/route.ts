@@ -1,8 +1,8 @@
-
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 
-export const authOptions = {
+// Define the authOptions inside the route file
+const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID!,
@@ -14,5 +14,6 @@ export const authOptions = {
 
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST }; // For App Router
-
+// Ensure correct export for App Router
+export const GET = handler;
+export const POST = handler;
